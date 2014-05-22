@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PartmentList.h"
+#import "MyFavorite.h"
+#import "AllNcuhomers.h"
 
-@interface TAppDelegate : UIResponder <UIApplicationDelegate>
+@interface TAppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong,nonatomic) UITabBarController *tabBar;
+@property (strong,nonatomic) NSArray *controllers;
 
 @end

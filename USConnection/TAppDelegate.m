@@ -9,14 +9,40 @@
 #import "TAppDelegate.h"
 
 @implementation TAppDelegate
-
+@synthesize tabBar,controllers;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    
+    MyFavorite *favorite=[[MyFavorite alloc] init];
+    UITabBarItem *tb_favorite=[[UITabBarItem alloc] initWithTitle:@"我的收藏" image:nil tag:001];
+    UINavigationController * nav_favorite=[[UINavigationController alloc] initWithRootViewController:favorite];
+    favorite.title=@"我的收藏";
+    [nav_favorite setTabBarItem:tb_favorite];
+    
+    PartmentList *partment=[[PartmentList alloc] init];
+    UITabBarItem *tb_partment=[[UITabBarItem alloc] initWithTitle:@"部门列表" image:nil tag:002];
+    UINavigationController * nav_partment=[[UINavigationController alloc] initWithRootViewController:partment];
+    partment.title=@"部门列表";
+    [nav_partment setTabBarItem:tb_partment];
+    
+    AllNcuhomers *ncuhomers=[[AllNcuhomers alloc] init];
+    UITabBarItem *tb_ncuhomers=[[UITabBarItem alloc] initWithTitle:@"联系人列表" image:nil tag:003];
+    UINavigationController * nav_ncuhomers=[[UINavigationController alloc] initWithRootViewController:ncuhomers];
+    ncuhomers.title=@"联系人";
+    [nav_ncuhomers setTabBarItem:tb_ncuhomers];
+    
+    controllers=[NSArray arrayWithObjects:nav_favorite,nav_partment,nav_ncuhomers, nil];
+    tabBar=[[UITabBarController alloc] init];
+    tabBar.delegate=self;
+    tabBar.viewControllers=controllers;
+    [self.window addSubview:tabBar.view];
     [self.window makeKeyAndVisible];
     return YES;
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
